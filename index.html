@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Universities Database | Find Your Dream College</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>GlobalEdu</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#search" class="nav-link">Search</a></li>
+                <li><a href="#universities" class="nav-link">Universities</a></li>
+                <li><a href="#regions" class="nav-link">Regions</a></li>
+                <li><a href="#streams" class="nav-link">Streams</a></li>
+                <li><a href="#compare" class="nav-link">Compare</a></li>
+                <li><a href="#statistics" class="nav-link">Statistics</a></li>
+                <li><a href="#admission" class="nav-link">Admission Guide</a></li>
+                <li><a href="#" class="nav-link" id="downloadExcelNav"><i class="fas fa-download"></i> Download</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="gradient-overlay"></div>
+            <div class="animated-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">Find Your</span>
+                <span class="title-highlight">Dream University</span>
+                <span class="title-line">Worldwide</span>
+            </h1>
+            <p class="hero-subtitle">Explore 100+ top universities across 20+ countries. Compare programs, fees, and rankings to make the best decision for your future.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" id="universityCount">115+</span>
+                    <span class="stat-label">Universities</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">25+</span>
+                    <span class="stat-label">Countries</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Streams</span>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a href="#search" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                    Start Exploring
+                </a>
+                <a href="#universities" class="btn btn-secondary">
+                    <i class="fas fa-list"></i>
+                    View All
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Quick Search Section -->
+    <section class="search-section" id="search">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Find Your Perfect University</h2>
+                <p class="section-subtitle">Use our powerful search and filter tools to discover universities that match your criteria</p>
+            </div>
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by university name, location, or program...">
+                    <button class="clear-btn" id="clearSearch">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>Region</label>
+                        <select id="regionFilter">
+                            <option value="">All Regions</option>
+                            <option value="americas">Americas</option>
+                            <option value="europe">Europe</option>
+                            <option value="asia">Asia</option>
+                            <option value="oceania">Oceania</option>
+                            <option value="middle-east">Middle East</option>
+                            <option value="africa">Africa</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Country</label>
+                        <select id="countryFilter">
+                            <option value="">All Countries</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Stream</label>
+                        <select id="streamFilter">
+                            <option value="">All Streams</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Business">Business</option>
+                            <option value="Medicine">Medicine</option>
+                            <option value="Law">Law</option>
+                            <option value="Sciences">Sciences</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Arts">Arts</option>
+                            <option value="Humanities">Humanities</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Sort By</label>
+                        <select id="sortFilter">
+                            <option value="name">Name (A-Z)</option>
+                            <option value="ranking">Global Ranking</option>
+                            <option value="country">Country</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="active-filters" id="activeFilters"></div>
+            </div>
+            <div class="search-results-info">
+                <span id="resultsCount">Showing all universities</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Universities Grid Section -->
+    <section class="universities-section" id="universities">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Top Universities Worldwide</h2>
+                <p class="section-subtitle">Explore our comprehensive database of world-class institutions</p>
+            </div>
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="grid">
+                    <i class="fas fa-th-large"></i> Grid
+                </button>
+                <button class="view-btn" data-view="list">
+                    <i class="fas fa-list"></i> List
+                </button>
+            </div>
+            <div class="universities-grid" id="universitiesGrid">
+                <!-- Universities will be dynamically loaded -->
+            </div>
+            <div class="load-more-container">
+                <button class="btn btn-primary" id="loadMoreBtn">
+                    <i class="fas fa-plus"></i> Load More Universities
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regions Section -->
+    <section class="regions-section" id="regions">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Explore by Region</h2>
+                <p class="section-subtitle">Click on a region to discover universities in that area</p>
+            </div>
+            <div class="regions-grid">
+                <div class="region-card" data-region="americas">
+                    <div class="region-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>Americas</h3>
+                    <p>USA, Canada, Mexico, Brazil</p>
+                    <span class="region-count" id="americasCount">0 Universities</span>
+                </div>
+                <div class="region-card" data-region="europe">
+                    <div class="region-icon">
+                        <i class="fas fa-globe-europe"></i>
+                    </div>
+                    <h3>Europe</h3>
+                    <p>UK, Germany, France, Netherlands</p>
+                    <span class="region-count" id="europeCount">0 Universities</span>
+                </div>
+                <div class="region-card" data-region="asia">
+                    <div class="region-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <h3>Asia</h3>
+                    <p>China, Japan, India, Singapore</p>
+                    <span class="region-count" id="asiaCount">0 Universities</span>
+                </div>
+                <div class="region-card" data-region="oceania">
+                    <div class="region-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Oceania</h3>
+                    <p>Australia, New Zealand</p>
+                    <span class="region-count" id="oceaniaCount">0 Universities</span>
+                </div>
+                <div class="region-card" data-region="middle-east">
+                    <div class="region-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>Middle East</h3>
+                    <p>UAE, Israel</p>
+                    <span class="region-count" id="middleEastCount">0 Universities</span>
+                </div>
+                <div class="region-card" data-region="africa">
+                    <div class="region-icon">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                    <h3>Africa</h3>
+                    <p>South Africa</p>
+                    <span class="region-count" id="africaCount">0 Universities</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Streams Section -->
+    <section class="streams-section" id="streams">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Find by Stream</h2>
+                <p class="section-subtitle">Select your field of study to find the best universities</p>
+            </div>
+            <div class="streams-grid">
+                <div class="stream-card" data-stream="Engineering">
+                    <i class="fas fa-cogs"></i>
+                    <h4>Engineering</h4>
+                </div>
+                <div class="stream-card" data-stream="Computer Science">
+                    <i class="fas fa-laptop-code"></i>
+                    <h4>Computer Science</h4>
+                </div>
+                <div class="stream-card" data-stream="Business">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Business</h4>
+                </div>
+                <div class="stream-card" data-stream="Medicine">
+                    <i class="fas fa-heartbeat"></i>
+                    <h4>Medicine</h4>
+                </div>
+                <div class="stream-card" data-stream="Law">
+                    <i class="fas fa-balance-scale"></i>
+                    <h4>Law</h4>
+                </div>
+                <div class="stream-card" data-stream="Sciences">
+                    <i class="fas fa-flask"></i>
+                    <h4>Sciences</h4>
+                </div>
+                <div class="stream-card" data-stream="Technology">
+                    <i class="fas fa-microchip"></i>
+                    <h4>Technology</h4>
+                </div>
+                <div class="stream-card" data-stream="Architecture">
+                    <i class="fas fa-building"></i>
+                    <h4>Architecture</h4>
+                </div>
+                <div class="stream-card" data-stream="Mathematics">
+                    <i class="fas fa-calculator"></i>
+                    <h4>Mathematics</h4>
+                </div>
+                <div class="stream-card" data-stream="Physics">
+                    <i class="fas fa-atom"></i>
+                    <h4>Physics</h4>
+                </div>
+                <div class="stream-card" data-stream="Economics">
+                    <i class="fas fa-coins"></i>
+                    <h4>Economics</h4>
+                </div>
+                <div class="stream-card" data-stream="Arts">
+                    <i class="fas fa-palette"></i>
+                    <h4>Arts</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compare Section -->
+    <section class="compare-section" id="compare">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Compare Universities</h2>
+                <p class="section-subtitle">Select up to 3 universities to compare side by side</p>
+            </div>
+            <div class="compare-selectors">
+                <div class="compare-slot">
+                    <select id="compare1" class="compare-select">
+                        <option value="">Select University 1</option>
+                    </select>
+                </div>
+                <div class="compare-slot">
+                    <select id="compare2" class="compare-select">
+                        <option value="">Select University 2</option>
+                    </select>
+                </div>
+                <div class="compare-slot">
+                    <select id="compare3" class="compare-select">
+                        <option value="">Select University 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="compare-table-container" id="compareTableContainer">
+                <p class="compare-placeholder">Select universities above to start comparing</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics-section" id="statistics">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Database Statistics</h2>
+                <p class="section-subtitle">Insights and analytics from our comprehensive database</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalUniversities">0</h3>
+                        <p>Total Universities</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalCountries">0</h3>
+                        <p>Countries Covered</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="topRanked">0</h3>
+                        <p>Top 50 Ranked</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalStreams">15+</h3>
+                        <p>Academic Streams</p>
+                    </div>
+                </div>
+            </div>
+            <div class="charts-row">
+                <div class="chart-container">
+                    <h3>Universities by Region</h3>
+                    <canvas id="regionChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Top Countries</h3>
+                    <canvas id="countryChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Universities Section -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Universities</h2>
+                <p class="section-subtitle">Top-ranked institutions from around the world</p>
+            </div>
+            <div class="featured-slider" id="featuredSlider">
+                <!-- Featured universities will be loaded dynamically -->
+            </div>
+            <div class="slider-controls">
+                <button class="slider-btn prev" id="sliderPrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn next" id="sliderNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download-section" id="download">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Download Database</h2>
+                <p class="section-subtitle">Export the complete universities database to Excel format with all details</p>
+            </div>
+            
+            <!-- Database Stats -->
+            <div class="download-stats">
+                <div class="stat-box">
+                    <div class="stat-icon"><i class="fas fa-university"></i></div>
+                    <div class="stat-content">
+                        <h4 id="totalUniversitiesCount">138</h4>
+                        <p>Total Universities</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon"><i class="fas fa-globe-americas"></i></div>
+                    <div class="stat-content">
+                        <h4 id="totalCountriesCount">27</h4>
+                        <p>Countries</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <div class="stat-content">
+                        <h4>6</h4>
+                        <p>Regions</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+                    <div class="stat-content">
+                        <h4>15+</h4>
+                        <p>Program Streams</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-options">
+                <div class="download-main-card">
+                    <div class="download-header">
+                        <div class="download-icon-large">
+                            <i class="fas fa-file-excel"></i>
+                        </div>
+                        <h3>Export Universities Database</h3>
+                        <p>Download complete university data including rankings, fees, qualifications, academic sessions, and official website links.</p>
+                    </div>
+                    <div class="download-filters">
+                        <h4><i class="fas fa-filter"></i> Filter Before Download</h4>
+                        <div class="download-filter-row">
+                            <div class="download-filter-group">
+                                <label>Region</label>
+                                <select id="downloadRegion">
+                                    <option value="">All Regions</option>
+                                    <option value="americas">Americas</option>
+                                    <option value="europe">Europe</option>
+                                    <option value="asia">Asia</option>
+                                    <option value="oceania">Oceania</option>
+                                    <option value="middle-east">Middle East</option>
+                                    <option value="africa">Africa</option>
+                                </select>
+                            </div>
+                            <div class="download-filter-group">
+                                <label>Country</label>
+                                <select id="downloadCountry">
+                                    <option value="">All Countries</option>
+                                </select>
+                            </div>
+                            <div class="download-filter-group">
+                                <label>Stream</label>
+                                <select id="downloadStream">
+                                    <option value="">All Streams</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Medicine">Medicine</option>
+                                    <option value="Law">Law</option>
+                                    <option value="Sciences">Sciences</option>
+                                    <option value="Technology">Technology</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="download-preview">
+                            <i class="fas fa-check-circle"></i>
+                            <span id="downloadPreviewCount">138 universities</span> will be downloaded
+                        </div>
+                    </div>
+                    <div class="download-buttons">
+                        <button class="btn btn-primary btn-download" id="downloadExcelBtn">
+                            <i class="fas fa-file-excel"></i> Download as Excel
+                        </button>
+                        <button class="btn btn-secondary" id="resetDownloadFilters">
+                            <i class="fas fa-redo"></i> Reset Filters
+                        </button>
+                    </div>
+                    <div class="download-info">
+                        <p><i class="fas fa-info-circle"></i> The file will be downloaded in Excel format (.xlsx) compatible with Microsoft Excel, Google Sheets, and other spreadsheet applications.</p>
+                    </div>
+                    
+                    <div class="download-includes">
+                        <h4><i class="fas fa-table"></i> Included Data Columns</h4>
+                        <div class="data-columns">
+                            <span class="data-tag"><i class="fas fa-tag"></i> University Name</span>
+                            <span class="data-tag"><i class="fas fa-map-marker-alt"></i> Location & Country</span>
+                            <span class="data-tag"><i class="fas fa-trophy"></i> Global Ranking</span>
+                            <span class="data-tag"><i class="fas fa-graduation-cap"></i> Programs Offered</span>
+                            <span class="data-tag"><i class="fas fa-certificate"></i> Qualification Requirements</span>
+                            <span class="data-tag"><i class="fas fa-dollar-sign"></i> Fee Structure</span>
+                            <span class="data-tag"><i class="fas fa-calendar-alt"></i> Academic Session</span>
+                            <span class="data-tag"><i class="fas fa-link"></i> Official Website</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UG Admission Summary Section -->
+    <section class="admission-section" id="admission">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">UG Admission Guide</h2>
+                <p class="section-subtitle">Stream-wise admission requirements, entrance exams, documents needed, and top college recommendations</p>
+            </div>
+            
+            <div class="admission-intro">
+                <div class="intro-card">
+                    <div class="intro-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="intro-content">
+                        <h3>How to Use This Guide</h3>
+                        <p>This comprehensive guide covers 8 major academic streams with detailed information about entrance exams, qualifications, required documents, and top universities. Click on any stream card below to expand and view complete details.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admission-grid">
+                <!-- Engineering -->
+                <div class="admission-card" data-stream="engineering">
+                    <div class="admission-card-header">
+                        <div class="stream-icon engineering"><i class="fas fa-cogs"></i></div>
+                        <h3>Engineering</h3>
+                        <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="admission-card-body">
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-file-alt"></i> Entrance Exams</h4>
+                            <p>JEE Main/JEE Advanced (India), SAT/ACT (US), GATE (PG), GRE (International PG)</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-graduation-cap"></i> Qualifications</h4>
+                            <p>High school diploma with strong marks in Mathematics & Physics. Some universities require minimum 75% in PCM subjects.</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-folder-open"></i> Required Documents</h4>
+                            <p>Application form, 10th/12th mark sheets, diploma (if any), passport-size photo, ID proof, SOP (for PG), recommendation letters</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-university"></i> Top Colleges</h4>
+                            <div class="top-colleges-list">
+                                <span class="college-tag">IIT Delhi</span>
+                                <span class="college-tag">IIT Bombay</span>
+                                <span class="college-tag">MIT</span>
+                                <span class="college-tag">Stanford</span>
+                                <span class="college-tag">ETH Zurich</span>
+                                <span class="college-tag">TUM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Computer Science -->
+                <div class="admission-card" data-stream="cs">
+                    <div class="admission-card-header">
+                        <div class="stream-icon cs"><i class="fas fa-laptop-code"></i></div>
+                        <h3>Computer Science</h3>
+                        <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="admission-card-body">
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-file-alt"></i> Entrance Exams</h4>
+                            <p>JEE Main/Advanced, SAT/ACT, university-specific tests; GATE (PG), GRE (International)</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-graduation-cap"></i> Qualifications</h4>
+                            <p>High school diploma with Mathematics. Programming knowledge and personal projects are highly valued.</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-folder-open"></i> Required Documents</h4>
+                            <p>Transcripts, CV/Resume, portfolio/projects (GitHub), recommendation letters (PG), Statement of Purpose</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-university"></i> Top Colleges</h4>
+                            <div class="top-colleges-list">
+                                <span class="college-tag">MIT</span>
+                                <span class="college-tag">Stanford</span>
+                                <span class="college-tag">IITs</span>
+                                <span class="college-tag">NUS</span>
+                                <span class="college-tag">Tsinghua</span>
+                                <span class="college-tag">CMU</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business / Management -->
+                <div class="admission-card" data-stream="business">
+                    <div class="admission-card-header">
+                        <div class="stream-icon business"><i class="fas fa-chart-line"></i></div>
+                        <h3>Business / Management</h3>
+                        <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="admission-card-body">
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-file-alt"></i> Entrance Exams</h4>
+                            <p>CAT/XAT (India MBA), GMAT/GRE (International PG), university-specific UG tests, SAT for US universities</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-graduation-cap"></i> Qualifications</h4>
+                            <p>High school diploma for UG. For MBA: Bachelor's degree + 2-5 years work experience preferred.</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-folder-open"></i> Required Documents</h4>
+                            <p>Transcripts, CV/Resume, Statement of Purpose, Letters of Recommendation, entrance test scores, work experience certificates (MBA)</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-university"></i> Top Colleges</h4>
+                            <div class="top-colleges-list">
+                                <span class="college-tag">IIM Ahmedabad</span>
+                                <span class="college-tag">Wharton</span>
+                                <span class="college-tag">Stanford GSB</span>
+                                <span class="college-tag">LBS</span>
+                                <span class="college-tag">INSEAD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medicine -->
+                <div class="admission-card" data-stream="medicine">
+                    <div class="admission-card-header">
+                        <div class="stream-icon medicine"><i class="fas fa-heartbeat"></i></div>
+                        <h3>Medicine (MBBS)</h3>
+                        <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="admission-card-body">
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-file-alt"></i> Entrance Exams</h4>
+                            <p>NEET-UG (India - mandatory), UCAT/BMAT (UK), MCAT (US/Canada), university-specific tests abroad</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-graduation-cap"></i> Qualifications</h4>
+                            <p>High school diploma with Biology, Chemistry, and Physics. Minimum 50-60% in PCB required for NEET eligibility.</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-folder-open"></i> Required Documents</h4>
+                            <p>Mark sheets, NEET/entrance score card, medical fitness certificate, character certificate, background verification, caste certificate (if applicable)</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-university"></i> Top Colleges</h4>
+                            <div class="top-colleges-list">
+                                <span class="college-tag">AIIMS Delhi</span>
+                                <span class="college-tag">CMC Vellore</span>
+                                <span class="college-tag">U of Toronto</span>
+                                <span class="college-tag">UCL</span>
+                                <span class="college-tag">Karolinska</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Law -->
+                <div class="admission-card" data-stream="law">
+                    <div class="admission-card-header">
+                        <div class="stream-icon law"><i class="fas fa-balance-scale"></i></div>
+                        <h3>Law</h3>
+                        <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="admission-card-body">
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-file-alt"></i> Entrance Exams</h4>
+                            <p>CLAT/AILET (India UG), LNAT (UK), LSAT (US/International), university-specific aptitude tests</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-graduation-cap"></i> Qualifications</h4>
+                            <p>High school diploma for 5-year integrated LLB. For 3-year LLB: Bachelor's degree in any discipline.</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-folder-open"></i> Required Documents</h4>
+                            <p>Transcripts, entrance test score, Statement of Purpose, recommendation letters, legal internship certificates (if any)</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-university"></i> Top Colleges</h4>
+                            <div class="top-colleges-list">
+                                <span class="college-tag">NLSIU Bangalore</span>
+                                <span class="college-tag">NALSAR</span>
+                                <span class="college-tag">Oxford</span>
+                                <span class="college-tag">Harvard Law</span>
+                                <span class="college-tag">LSE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Natural Sciences -->
+                <div class="admission-card" data-stream="sciences">
+                    <div class="admission-card-header">
+                        <div class="stream-icon sciences"><i class="fas fa-flask"></i></div>
+                        <h3>Natural & Life Sciences</h3>
+                        <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="admission-card-body">
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-file-alt"></i> Entrance Exams</h4>
+                            <p>University entrance exams, national tests (CUET in India), SAT Subject Tests, specific science aptitude tests</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-graduation-cap"></i> Qualifications</h4>
+                            <p>Strong science background in high school (Physics, Chemistry, Biology, Mathematics). Research experience valued.</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-folder-open"></i> Required Documents</h4>
+                            <p>Transcripts, research/project summaries, Statement of Purpose (PG), recommendation letters from teachers</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-university"></i> Top Colleges</h4>
+                            <div class="top-colleges-list">
+                                <span class="college-tag">Cambridge</span>
+                                <span class="college-tag">Oxford</span>
+                                <span class="college-tag">Tsinghua</span>
+                                <span class="college-tag">UChicago</span>
+                                <span class="college-tag">IISc</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Architecture -->
+                <div class="admission-card" data-stream="architecture">
+                    <div class="admission-card-header">
+                        <div class="stream-icon architecture"><i class="fas fa-drafting-compass"></i></div>
+                        <h3>Architecture</h3>
+                        <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="admission-card-body">
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-file-alt"></i> Entrance Exams</h4>
+                            <p>NATA/JEE Paper 2 (India), portfolio review (international), CEED (PG), university-specific studio tests</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-graduation-cap"></i> Qualifications</h4>
+                            <p>High school diploma with Mathematics. Strong aptitude for design, drawing, and spatial visualization required.</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-folder-open"></i> Required Documents</h4>
+                            <p>Portfolio (10-20 creative works), transcripts, entrance test scores, Statement of Purpose, sketches/drawings</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-university"></i> Top Colleges</h4>
+                            <div class="top-colleges-list">
+                                <span class="college-tag">MIT</span>
+                                <span class="college-tag">UCL Bartlett</span>
+                                <span class="college-tag">Politecnico Milano</span>
+                                <span class="college-tag">SPA Delhi</span>
+                                <span class="college-tag">NID</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arts & Humanities -->
+                <div class="admission-card" data-stream="arts">
+                    <div class="admission-card-header">
+                        <div class="stream-icon arts"><i class="fas fa-palette"></i></div>
+                        <h3>Arts, Humanities & Social Sciences</h3>
+                        <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="admission-card-body">
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-file-alt"></i> Entrance Exams</h4>
+                            <p>Often merit-based or CUET (India), university-specific essays, SAT/ACT for US, aptitude tests for specific programs</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-graduation-cap"></i> Qualifications</h4>
+                            <p>High school diploma with relevant subject background. Strong writing, analytical, and critical thinking skills valued.</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-folder-open"></i> Required Documents</h4>
+                            <p>Transcripts, writing samples/essays, recommendation letters, Statement of Purpose (PG), creative portfolio (for arts)</p>
+                        </div>
+                        <div class="admission-detail">
+                            <h4><i class="fas fa-university"></i> Top Colleges</h4>
+                            <div class="top-colleges-list">
+                                <span class="college-tag">Oxford</span>
+                                <span class="college-tag">Cambridge</span>
+                                <span class="college-tag">LSE</span>
+                                <span class="college-tag">UChicago</span>
+                                <span class="college-tag">JNU</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admission Tips -->
+            <div class="admission-tips">
+                <h3><i class="fas fa-lightbulb"></i> Pro Tips for Successful Admission</h3>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-number">1</div>
+                        <h4>Start Early</h4>
+                        <p>Begin preparation at least 1-2 years before application deadlines. Research universities and their requirements thoroughly.</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">2</div>
+                        <h4>Build Your Profile</h4>
+                        <p>Focus on academics, extracurriculars, internships, and projects. A well-rounded profile stands out in competitive admissions.</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">3</div>
+                        <h4>Prepare Strong Documents</h4>
+                        <p>Craft a compelling SOP, secure strong recommendation letters, and maintain organized documentation of all achievements.</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">4</div>
+                        <h4>Apply Strategically</h4>
+                        <p>Apply to a mix of dream, target, and safety universities. Keep track of deadlines and scholarship opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- University Detail Modal -->
+    <div class="modal" id="universityModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GlobalEdu</span>
+                    </div>
+                    <p>Your trusted partner in finding the perfect university worldwide. We help students discover their dream educational institutions.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#universities">Universities</a></li>
+                        <li><a href="#regions">Regions</a></li>
+                        <li><a href="#download">Download</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Admission Guide</a></li>
+                        <li><a href="#">Scholarship Info</a></li>
+                        <li><a href="#">Visa Assistance</a></li>
+                        <li><a href="#">Study Abroad Tips</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to get updates on new universities and admission deadlines.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GlobalEdu. All rights reserved. | Designed with ❤️ for Students</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Loading Spinner -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
